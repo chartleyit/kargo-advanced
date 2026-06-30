@@ -11,3 +11,4 @@ spec:
     targetPort: http
   selector:
     app: guestbook
+  type: NodePort
