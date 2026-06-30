@@ -11,6 +11,9 @@ patches:
     kind: Service
     name: guestbook
   patch: |-
+    - op: replace
+      path: /spec/type
+      value: NodePort
     - op: add
       path: /spec/ports/0/nodePort
       value: 32080
