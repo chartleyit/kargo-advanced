@@ -5,3 +5,12 @@ resources:
 - ../../base
 
 namespace: guestbook-staging
+
+patches:
+- target:
+    kind: Service
+    name: guestbook
+  patch: |-
+    - op: add
+      path: /spec/ports/0/nodePort
+      value: 32081
