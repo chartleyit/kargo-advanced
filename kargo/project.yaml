@@ -5,3 +5,11 @@ metadata:
   annotations:
     # This annotation ensures Projects (Namespaces) are created first when deployed via Argo CD
     argocd.argoproj.io/sync-wave: "-1"
+spec:
+  promotionPolicies:
+    - stageSelector:
+        name: dev
+      autoPromotionEnabled: true
+    - stageSelector:
+        name: staging
+      autoPromotionEnabled: true

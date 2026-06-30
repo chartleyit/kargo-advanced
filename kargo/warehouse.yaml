@@ -12,3 +12,5 @@ spec:
   - git:
       repoURL: https://github.com/chartleyit/kargo-advanced.git
       branch: main
+      excludePaths:
+        - kargo
