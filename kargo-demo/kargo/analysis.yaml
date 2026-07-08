@@ -1,0 +1,20 @@
+# This is a sample analysis template that uses the PokeAPI to
+# check the base experience of a Pokemon is under threshold.
+apiVersion: argoproj.io/v1alpha1
+kind: AnalysisTemplate
+metadata:
+  name: pokemon-xp
+  namespace: kargo-advanced
+spec:
+  args:
+  - name: pokemon
+  metrics:
+  - name: pokemon-xp
+    interval: 5s
+    count: 5
+    successCondition: result < 200
+    failureLimit: 3
+    provider:
+      web:
+        url: https://pokeapi.co/api/v2/pokemon/{{args.pokemon}}
+        jsonPath: "{$.base_experience}"

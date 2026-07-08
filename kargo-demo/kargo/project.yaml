@@ -1,0 +1,24 @@
+apiVersion: kargo.akuity.io/v1alpha1
+kind: Project
+metadata:
+  name: kargo-advanced
+  annotations:
+    # This annotation ensures Projects (Namespaces) are created first when deployed via Argo CD
+    argocd.argoproj.io/sync-wave: "-1"
+---
+apiVersion: kargo.akuity.io/v1alpha1
+kind: ProjectConfig
+metadata:
+  name: kargo-advanced
+  namespace: kargo-advanced
+spec:
+  promotionPolicies:
+    - stageSelector:
+        name: dev0
+      autoPromotionEnabled: true
+    - stageSelector:
+        name: test0
+      autoPromotionEnabled: true
+    - stageSelector:
+        name: staging0
+      autoPromotionEnabled: true
