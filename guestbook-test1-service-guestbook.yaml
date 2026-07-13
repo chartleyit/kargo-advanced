@@ -6,7 +6,7 @@ metadata:
 spec:
   ports:
   - name: http
-    nodePort: 33081
+    nodePort: 30081
     port: 80
     targetPort: http
   selector:
