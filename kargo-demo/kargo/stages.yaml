@@ -49,6 +49,33 @@ spec:
 apiVersion: kargo.akuity.io/v1alpha1
 kind: Stage
 metadata:
+  name: staging0
+  namespace: kargo-advanced
+  annotations:
+    kargo.akuity.io/color: yellow
+spec:
+  requestedFreight:
+  - origin:
+      kind: Warehouse
+      name: guestbook
+    sources:
+      stages:
+      - test0
+  promotionTemplate:
+    spec:
+      steps:
+      - task:
+          name: promote
+  verification:
+    analysisTemplates:
+    - name: pokemon-xp
+    args:
+    - name: pokemon
+      value: pikachu
+---
+apiVersion: kargo.akuity.io/v1alpha1
+kind: Stage
+metadata:
   name: test1
   namespace: kargo-advanced
   annotations:
@@ -73,33 +100,6 @@ spec:
     args:
     - name: pokemon
       value: charizard
----
-apiVersion: kargo.akuity.io/v1alpha1
-kind: Stage
-metadata:
-  name: staging0
-  namespace: kargo-advanced
-  annotations:
-    kargo.akuity.io/color: yellow
-spec:
-  requestedFreight:
-  - origin:
-      kind: Warehouse
-      name: guestbook
-    sources:
-      stages:
-      - test0
-  promotionTemplate:
-    spec:
-      steps:
-      - task:
-          name: promote
-  verification:
-    analysisTemplates:
-    - name: pokemon-xp
-    args:
-    - name: pokemon
-      value: pikachu
 ---
 apiVersion: kargo.akuity.io/v1alpha1
 kind: Stage

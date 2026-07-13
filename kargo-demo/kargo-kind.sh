@@ -22,12 +22,16 @@ nodes:
     hostPort: 31081
   - containerPort: 31082 # External webhooks server
     hostPort: 31082
-  - containerPort: 32080 # test application instance
+  - containerPort: 32080 # dev0 application instance
     hostPort: 32080
-  - containerPort: 32081 # UAT application instance
+  - containerPort: 32081 # test0 application instance
     hostPort: 32081
-  - containerPort: 32082 # prod application instance
+  - containerPort: 32082 # staging0 application instance
     hostPort: 32082
+  - containerPort: 33081 # test1 application instance
+    hostPort: 30081
+  - containerPort: 33082 # staging1 application instance
+    hostPort: 30082
 EOF
 
 helm install cert-manager cert-manager \
@@ -79,6 +83,7 @@ helm install kargo \
   --set externalWebhooksServer.tls.enabled=false \
   --wait
 
+set +x
 
 echo "Run these commands to bootstrap argo proj/app"
 echo "argocd login localhost:31080"
